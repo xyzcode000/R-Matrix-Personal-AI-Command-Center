@@ -1,0 +1,346 @@
+/* ==========================================================================
+   R MATRIX — Project intelligence workspace
+   ========================================================================== */
+
+.project-workspace {
+  display: grid;
+  gap: 18px;
+}
+
+.project-selector,
+.project-overview,
+.project-tabs,
+.project-form,
+.project-filter {
+  min-width: 0;
+}
+
+.project-selector {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.project-selector__choice {
+  display: grid;
+  min-width: min(100%, 360px);
+  gap: 8px;
+}
+
+.project-selector__choice label,
+.project-form label {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  letter-spacing: 0.11em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.project-create {
+  position: relative;
+}
+
+.project-create > summary {
+  display: inline-flex;
+  cursor: pointer;
+  list-style: none;
+}
+
+.project-create > summary::-webkit-details-marker {
+  display: none;
+}
+
+.project-create[open] {
+  flex-basis: 100%;
+}
+
+.project-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.project-form label {
+  display: grid;
+  gap: 7px;
+}
+
+.project-form label:has(textarea) {
+  grid-column: 1 / -1;
+}
+
+.project-form textarea,
+.project-filter textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+
+.project-form > button,
+.project-form__actions {
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+
+.project-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.project-tabs {
+  display: flex;
+  gap: 2px;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--border-faint);
+  scrollbar-width: none;
+}
+
+.project-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.project-tabs button {
+  position: relative;
+  flex: 0 0 auto;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  padding: 12px 16px;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    color 160ms var(--ease-soft),
+    border-color 160ms var(--ease-soft);
+}
+
+.project-tabs button:hover {
+  color: var(--text-soft);
+}
+
+.project-tabs button.is-active {
+  border-bottom-color: var(--accent);
+  color: var(--accent-bright);
+}
+
+.project-overview {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 14px;
+}
+
+.project-overview > .panel:last-child {
+  grid-column: 1 / -1;
+}
+
+.project-path {
+  overflow-wrap: anywhere;
+  border-left: 2px solid var(--accent-line);
+  padding: 8px 12px;
+  background: var(--accent-wash);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.project-overview__actions {
+  display: grid;
+  justify-items: start;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.project-overview__actions .quiet-label {
+  line-height: 1.7;
+}
+
+.project-filter {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+  align-items: end;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.project-filter .button {
+  height: 40px;
+}
+
+.project-search {
+  grid-template-columns: minmax(0, 1fr) auto;
+  border-top: 1px solid var(--border-faint);
+  padding-top: 18px;
+}
+
+.project-file-list {
+  display: grid;
+  gap: 1px;
+  margin: 14px 0;
+  border: 1px solid var(--border-faint);
+  background: var(--border-faint);
+}
+
+.project-file {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border: 0;
+  padding: 12px 14px;
+  background: rgba(10, 10, 15, 0.72);
+  color: var(--text);
+  text-align: left;
+  transition: background 160ms var(--ease-soft);
+}
+
+.project-file:hover {
+  background: var(--bg-surface);
+}
+
+.project-file > span:first-child {
+  display: grid;
+  min-width: 0;
+  gap: 5px;
+}
+
+.project-file strong {
+  overflow-wrap: anywhere;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.project-file small,
+.project-note .panel-title > small {
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.project-file > span:last-child {
+  color: var(--accent);
+  font-size: 11px;
+}
+
+.project-source,
+.project-note,
+.project-answer {
+  margin-top: 16px;
+  border: 1px solid var(--border-faint);
+  border-left: 2px solid var(--accent-line);
+  padding: 18px;
+  background: rgba(10, 10, 15, 0.4);
+}
+
+.project-source pre {
+  max-height: 520px;
+  overflow: auto;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--text-soft);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.project-status-select {
+  width: auto;
+  min-width: 118px;
+}
+
+.project-note p,
+.project-assistant > p {
+  color: var(--text-soft);
+  font-size: var(--fs-sm);
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+.project-note h3 {
+  margin: 6px 0 0;
+  font-size: var(--fs-xl);
+}
+
+.project-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin: 14px 0;
+  border: 1px solid var(--border-faint);
+  border-left: 2px solid var(--amber);
+  padding: 10px 12px;
+  background: var(--amber-wash);
+  color: var(--text-soft);
+  font-size: 10px;
+  line-height: 1.65;
+}
+
+.project-consent input {
+  margin-top: 2px;
+  flex: 0 0 auto;
+}
+
+.project-answer p {
+  color: var(--text);
+  font-size: var(--fs-md);
+  line-height: 1.85;
+  white-space: pre-wrap;
+}
+
+.project-answer small {
+  display: block;
+  margin-top: 6px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 860px) {
+  .project-overview {
+    grid-template-columns: 1fr;
+  }
+
+  .project-overview > .panel:last-child {
+    grid-column: auto;
+  }
+
+  .project-form,
+  .project-filter {
+    grid-template-columns: 1fr;
+  }
+
+  .project-form label:has(textarea) {
+    grid-column: auto;
+  }
+
+  .project-form > button,
+  .project-form__actions {
+    grid-column: auto;
+  }
+
+  .project-search {
+    grid-template-columns: 1fr;
+  }
+
+  .project-selector {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .project-create > summary {
+    width: 100%;
+  }
+}

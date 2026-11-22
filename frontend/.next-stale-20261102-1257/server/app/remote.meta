@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/remote/layout,_N_T_/remote/page,_N_T_/remote"
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/4e1fe6ae432c97cf237e2b29480f56a1fdf0e4a19b29bfd57471deaa57bd962b/$/remote",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/remote/page"
+    },
+    "isFallback": false
+  }
+}

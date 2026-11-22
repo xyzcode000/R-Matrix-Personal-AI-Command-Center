@@ -1,0 +1,11 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/agents/page": "/agents",
+  "/page": "/",
+  "/projects/page": "/projects",
+  "/settings/page": "/settings",
+  "/chat/page": "/chat",
+  "/task-history/page": "/task-history",
+  "/documents/page": "/documents",
+  "/remote/page": "/remote"
+}

@@ -1,0 +1,307 @@
+/* ---------------------------------------------------------------
+   Five-part journey: personal greeting + capability index.
+   Uses only the existing design tokens (void, champagne, serif).
+   --------------------------------------------------------------- */
+
+.landing-greeting {
+  position: relative;
+  display: grid;
+  gap: 2px;
+  margin: 0 0 18px;
+  padding-left: 14px;
+  border-left: 1px solid var(--accent-line);
+  font-family: var(--font-display);
+  font-style: italic;
+  line-height: 1;
+  opacity: 0;
+  animation: landing-greeting-arrive 1100ms var(--ease-out) 320ms forwards;
+}
+
+.landing-greeting__salute {
+  color: var(--text-soft);
+  font-size: clamp(1.15rem, 2.1vw, 1.7rem);
+  letter-spacing: 0.01em;
+  font-weight: 300;
+}
+
+.landing-greeting__welcome {
+  color: var(--accent-bright);
+  font-size: clamp(1.55rem, 3.3vw, 2.6rem);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  text-shadow: 0 0 42px rgba(201, 177, 131, 0.22);
+}
+
+.landing-page.is-returning .landing-greeting {
+  animation-duration: 420ms;
+  animation-delay: 0ms;
+}
+
+@keyframes landing-greeting-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* ---------------- Capability index ---------------- */
+
+.capability-index {
+  display: grid;
+  margin-top: 34px;
+  border-top: 1px solid var(--border-soft);
+}
+
+.capability-row {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) auto 22px;
+  gap: 18px;
+  align-items: center;
+  padding: 20px 6px 20px 2px;
+  border-bottom: 1px solid var(--border-faint);
+  color: inherit;
+  text-decoration: none;
+  transition: background 220ms ease, border-color 220ms ease, padding 220ms ease;
+}
+
+.capability-row:hover,
+.capability-row:focus-visible {
+  padding-left: 12px;
+  border-bottom-color: var(--accent-line);
+  background: linear-gradient(90deg, var(--accent-wash), transparent 62%);
+  outline: none;
+}
+
+.capability-row__number {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.12em;
+  opacity: 0.75;
+}
+
+.capability-row__body {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.capability-row__label {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.18em;
+}
+
+.capability-row__title {
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1.9vw, 1.55rem);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.capability-row__description {
+  max-width: 62ch;
+  color: var(--muted);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+
+.capability-row__status {
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-pill);
+  padding: 3px 9px;
+  color: var(--text-soft);
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.capability-row__status[data-state="active"] {
+  border-color: rgba(156, 190, 169, 0.3);
+  color: var(--green);
+}
+
+.capability-row__status[data-state="gated"] {
+  border-color: var(--accent-line);
+  color: var(--accent-bright);
+}
+
+.capability-row__status[data-state="read-only"] {
+  border-color: var(--border);
+  color: var(--muted);
+}
+
+.capability-row__arrow {
+  color: var(--accent);
+  font-size: var(--fs-sm);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.capability-row:hover .capability-row__arrow,
+.capability-row:focus-visible .capability-row__arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ---------------- Tunnel architecture additions ---------------- */
+
+.tunnel-ceiling,
+.tunnel-floor {
+  position: absolute;
+  left: -30%;
+  right: -30%;
+  pointer-events: none;
+}
+
+.tunnel-ceiling {
+  top: -8%;
+  height: 54%;
+  background:
+    linear-gradient(180deg, rgba(236, 231, 219, 0.07), transparent 78%),
+    repeating-linear-gradient(90deg, rgba(201, 177, 131, 0.1) 0 1px, transparent 1px 148px);
+  transform-origin: top center;
+  transform: perspective(900px) rotateX(74deg) scale(1.4);
+  opacity: 0;
+  animation: tunnel-ceiling-in 1400ms var(--ease-soft) both;
+}
+
+.tunnel-floor {
+  bottom: -22%;
+  height: 72%;
+  border-radius: 50% 50% 0 0 / 30% 30% 0 0;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(201, 177, 131, 0.16), transparent 62%),
+    linear-gradient(180deg, rgba(10, 10, 15, 0.2), var(--bg-void) 72%),
+    repeating-linear-gradient(90deg, rgba(201, 177, 131, 0.09) 0 1px, transparent 1px 120px);
+  box-shadow: inset 0 1px 0 rgba(236, 231, 219, 0.1);
+  transform-origin: bottom center;
+  transform: perspective(900px) rotateX(-6deg) scale(1.18);
+  opacity: 0;
+  animation: tunnel-floor-in 1400ms var(--ease-soft) both;
+}
+
+@keyframes tunnel-ceiling-in {
+  0% {
+    opacity: 0;
+    transform: perspective(900px) rotateX(82deg) scale(1.5);
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.7;
+    transform: perspective(900px) rotateX(72deg) scale(1.34);
+  }
+}
+
+@keyframes tunnel-floor-in {
+  0% {
+    opacity: 0;
+    transform: perspective(900px) rotateX(-12deg) scale(1.1);
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.85;
+    transform: perspective(900px) rotateX(-4deg) scale(1.22);
+  }
+}
+
+/* The Bot stands to the left of the tunnel axis, as a companion presence. */
+
+.tunnel-robot {
+  left: 21%;
+  top: 48%;
+  width: min(30vw, 300px);
+}
+
+.tunnel-robot__label {
+  display: block;
+  margin-top: 10px;
+  color: var(--accent-bright);
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.3em;
+  text-align: center;
+  text-transform: uppercase;
+  opacity: 0.85;
+  animation: tunnel-label-in 1400ms ease 420ms both;
+}
+
+@keyframes tunnel-label-in {
+  0%,
+  30% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  100% {
+    opacity: 0.85;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .capability-row {
+    grid-template-columns: 36px minmax(0, 1fr) auto;
+    gap: 12px;
+  }
+
+  .capability-row__arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .capability-row {
+    grid-template-columns: 30px minmax(0, 1fr);
+    align-items: start;
+    padding: 18px 2px;
+  }
+
+  .capability-row__status {
+    grid-column: 2;
+    justify-self: start;
+    margin-top: 2px;
+  }
+
+  .landing-greeting {
+    margin-bottom: 14px;
+  }
+
+  .tunnel-robot {
+    left: 16%;
+    top: 50%;
+    width: min(46vw, 230px);
+  }
+
+  .tunnel-robot__label {
+    font-size: 8px;
+    letter-spacing: 0.22em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-greeting {
+    opacity: 1;
+    animation: none;
+  }
+
+  .tunnel-ceiling,
+  .tunnel-floor,
+  .tunnel-robot__label {
+    animation: none;
+    opacity: 0.7;
+  }
+}
